@@ -1,7 +1,14 @@
 from classes import *
 
+def l():
+    print()
+
+def titulo(tit):
+    print(f'=== {tit} ===')
+
 def menu():
-    print('''==== ACADEMIA BACKEND ====
+    l()
+    print('''===== ACADEMIA BACKEND =====
     1- Cadastrar aluno
     2- Cadastrar professor
     3- Listar alunos
@@ -11,32 +18,50 @@ def menu():
     opcao = input('Escolha: ')
     return opcao
 
-def cadastro_aluno():
-    nome = str(input('Nome: '))
+def cadastro_aluno(gym):
+    titulo('CADASTRO DE ALUNO')
+    nome = str(input('Nome: ')).strip().title()
     idade = int(input('Idade: '))
     aluno = Aluno(nome,idade)
-    gym = Academia()
     gym.cadastrar_aluno(aluno)
 
-def cadastro_professor():
-    nome = str(input('Nome: '))
+def cadastro_professor(gym):
+    titulo('CADASTRO DE PROFESSOR')
+    nome = str(input('Nome: ')).strip().title()
     idade = int(input('Idade: '))
     prof = Professor(nome,idade)
-    gym = Academia()
     gym.cadastrar_prof(prof)
+
+def listar_alunos(gym):
+    titulo('LISTA DE ALUNOS')
+    print(f'{'Nome:':<10}  {'Idade:':>10}')
+    for aluno in gym.alunos:
+        print(f'{aluno.nome:<10} {aluno.idade:>9}')
+
+def listar_prof(gym):
+    titulo('LISTA DE PROFESSORES')
+    print(f'{'Nome:':<10}  {'Idade:':>10}')
+    for prof in gym.professores:
+        print(f'{prof.nome:<10} {prof.idade:>9}')
+
 
 
 def main():
+    gym = Academia()
     while True:
         opc = menu()
-        print(f'Opção escolhida: {opc}')
 
         if opc == '1':
-            cadastro_aluno()
+            cadastro_aluno(gym)
 
         if opc == '2':
-            cadastro_professor()
+            cadastro_professor(gym)
 
+        if opc == '3':
+            listar_alunos(gym)
+
+        if opc == '4':
+            listar_prof(gym)
 
         if opc == '5':
             break

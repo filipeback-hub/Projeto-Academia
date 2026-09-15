@@ -24,9 +24,9 @@ class Academia:
 
     def cadastrar_aluno(self,aluno):
         self.alunos.append(aluno)
-        print(f'Aluno {aluno.nome}({aluno.idade}) cadastrado com sucesso')
+        print(f'Aluno {aluno.nome} cadastrado com sucesso')
 
 
     def cadastrar_prof(self,prof):
         self.professores.append(prof)
-        print(f'Professor {prof.nome}({prof.idade}) cadastrado com sucesso')
+        print(f'Professor {prof.nome} cadastrado com sucesso')
