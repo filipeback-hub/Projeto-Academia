@@ -21,16 +21,22 @@ def menu():
 def cadastro_aluno(gym):
     titulo('CADASTRO DE ALUNO')
     nome = str(input('Nome: ')).strip().title()
-    idade = int(input('Idade: '))
-    aluno = Aluno(nome,idade)
-    gym.cadastrar_aluno(aluno)
+    try:
+        idade = int(input('Idade: '))
+        aluno = Aluno(nome,idade)
+        gym.cadastrar_aluno(aluno)
+    except ValueError:
+        print('ERRO! Por favor digite um número valido')
 
 def cadastro_professor(gym):
     titulo('CADASTRO DE PROFESSOR')
     nome = str(input('Nome: ')).strip().title()
-    idade = int(input('Idade: '))
-    prof = Professor(nome,idade)
-    gym.cadastrar_prof(prof)
+    try:
+        idade = int(input('Idade: '))
+        prof = Professor(nome, idade)
+        gym.cadastrar_prof(prof)
+    except ValueError:
+        print('ERRO! Por favor digite um número valido')
 
 def listar_alunos(gym):
     titulo('LISTA DE ALUNOS')
