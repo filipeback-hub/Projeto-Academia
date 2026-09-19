@@ -13,7 +13,9 @@ def menu():
     2- Cadastrar professor
     3- Listar alunos
     4- Listar Professores
-    5- Sair''')
+    5- Buscar Aluno
+    6- Buscar Professor
+    7- Sair''')
 
     opcao = input('Escolha: ')
     return opcao
@@ -50,27 +52,52 @@ def listar_prof(gym):
     for prof in gym.professores:
         print(f'{prof.nome:<10} {prof.idade:>9}')
 
+def buscar_aluno(gym):
+    titulo('BUSCAR ALUNO')
+    nome_a = input('Nome do aluno: ').strip().title()
+    for alunos in gym.alunos:
+        if nome_a == alunos.nome:
+            print(f'Nome: {alunos.nome} ')
+            print(f'Idade: {alunos.idade}')
+            return
+    print('!Nenhum aluno encontrado!')
 
+def buscar_prof(gym):
+    titulo('BUSCAR PROFESSOR')
+    nome_p = input('Nome do professor: ').strip().title()
+    for prof in gym.professores:
+        if nome_p == prof.nome:
+            print(f'Nome: {prof.nome} ')
+            print(f'Idade: {prof.idade}')
+            return
+    print('!Nenhum professor encontrado!')
 
 def main():
     gym = Academia()
     while True:
         opc = menu()
 
-        if opc == '1':
-            cadastro_aluno(gym)
+        match opc:
+            case '1':
+                cadastro_aluno(gym)
 
-        if opc == '2':
-            cadastro_professor(gym)
+            case '2':
+                cadastro_professor(gym)
 
-        if opc == '3':
-            listar_alunos(gym)
+            case '3':
+                listar_alunos(gym)
 
-        if opc == '4':
-            listar_prof(gym)
+            case '4':
+                listar_prof(gym)
 
-        if opc == '5':
-            break
+            case '5':
+                buscar_aluno(gym)
+
+            case '6':
+                buscar_prof(gym)
+
+            case '7':
+                break
 
 
 if __name__ == '__main__':
