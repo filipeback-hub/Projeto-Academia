@@ -6,6 +6,7 @@ def l():
 def titulo(tit):
     print(f'=== {tit} ===')
 
+
 def menu():
     l()
     print('''===== ACADEMIA BACKEND =====
@@ -15,7 +16,11 @@ def menu():
     4- Listar Professores
     5- Buscar Aluno
     6- Buscar Professor
-    7- Sair''')
+    7- Editar Aluno
+    8- Editar Professor
+    9- Excluir Aluno
+    10- Excluir professor
+    11- Sair''')
 
     opcao = input('Escolha: ')
     return opcao
@@ -54,9 +59,9 @@ def listar_prof(gym):
 
 def buscar_aluno(gym):
     titulo('BUSCAR ALUNO')
-    nome_a = input('Nome do aluno: ').strip().title()
+    nome = input('Nome do aluno: ').strip().title()
     for alunos in gym.alunos:
-        if nome_a == alunos.nome:
+        if nome == alunos.nome:
             print(f'Nome: {alunos.nome} ')
             print(f'Idade: {alunos.idade}')
             return
@@ -64,13 +69,64 @@ def buscar_aluno(gym):
 
 def buscar_prof(gym):
     titulo('BUSCAR PROFESSOR')
-    nome_p = input('Nome do professor: ').strip().title()
+    nome = input('Nome do professor: ').strip().title()
     for prof in gym.professores:
-        if nome_p == prof.nome:
+        if nome == prof.nome:
             print(f'Nome: {prof.nome} ')
             print(f'Idade: {prof.idade}')
             return
     print('!Nenhum professor encontrado!')
+
+def editar_aluno(gym):
+    titulo('ALTERAR DADOS DO ALUNO')
+    nome = input('Nome do aluno: ').strip().title()
+    for a in gym.alunos:
+        if nome == a.nome:
+            print(f'Nome: {a.nome}')
+            print(f'Idade: {a.idade}')
+            nv_nome = input('Novo nome: ').strip().title()
+            nv_idade = int(input('Nova idade: '))
+            a.nome = nv_nome
+            a.idade = nv_idade
+            print('Alteração realizada com sucesso')
+            return
+    print('Nenhum aluno encontrado!')
+
+def editar_prof(gym):
+    titulo('ALTERAR DADOS DO PROFESSOR')
+    nome = input('Nome do professor: ').strip().title()
+    for p in gym.professores:
+        if nome == p.nome:
+            print(f'Nome: {p.nome}')
+            print(f'Idade: {p.idade}')
+            nv_nome = input('Novo nome: ').strip().title()
+            nv_idade = int(input('Nova idade: '))
+            p.nome = nv_nome
+            p.idade = nv_idade
+            print('Alteração realizada com sucesso')
+            return
+        print('Nenhum professor encontrado!')
+
+def excluir_aluno(gym):
+    titulo('REMOVER ALUNO')
+    nome = input('Nome do aluno: ').strip().title()
+    for aluno in gym.alunos:
+        if nome == aluno.nome:
+            gym.alunos.revove(aluno)
+            print(f'Aluno {aluno.nome} removido!!')
+            return
+    print('Nenhum aluno encontrado')
+
+def excluir_prof(gym):
+    titulo('REMOVER PROFESSOR')
+    nome = input('Nome do professor: ').strip().title()
+    for prof in gym.professores:
+        if nome == prof.nome:
+            gym.professores.remove(prof)
+            print(f'Professor {prof.nome} removio!!')
+            return
+    print('Nenhum professor encontrado')
+
 
 def main():
     gym = Academia()
@@ -97,6 +153,18 @@ def main():
                 buscar_prof(gym)
 
             case '7':
+                editar_aluno(gym)
+
+            case '8':
+                editar_prof(gym)
+
+            case '9':
+                excluir_aluno(gym)
+
+            case '10':
+                excluir_prof(gym)
+
+            case '11':
                 break
 
 
